@@ -46,6 +46,10 @@ jobs:
             docker buildx version
             gh --version
             uv --version
+            bun --version
+            bunx --version
+            go version
+            sqlite3 --version
             rustc --version
             cargo clippy --version
             cargo fmt --version

@@ -11,8 +11,10 @@ ghcr.io/brhelwig-dev/actions-runner:latest
 
 | Tool | Source |
 |---|---|
-| `build-essential`, `gh`, `libgl1`, `libglib2.0-0t64`, `perl` | Ubuntu packages |
+| `build-essential`, `gh`, `libgl1`, `libglib2.0-0t64`, `perl`, `sqlite3` | Ubuntu packages |
 | `uv`, `uvx` | [`ghcr.io/astral-sh/uv`](https://github.com/astral-sh/uv) |
+| `bun`, `bunx` | [`oven/bun`](https://hub.docker.com/r/oven/bun) |
+| `go` | [`golang`](https://hub.docker.com/_/golang) |
 | Rust stable with `clippy` and `rustfmt` | [rustup](https://rustup.rs), in `/usr/local/cargo` and `/usr/local/rustup` |
 
 The upstream image already has the runner, `git`, `curl`, `jq`, the Docker CLI and buildx.
@@ -24,5 +26,5 @@ To add an Ubuntu package, add it to the sorted list in the [`Dockerfile`](Docker
 
 The [workflow](.github/workflows/build.yml) builds the image on every push and pull request,
 and pushes `latest` from `main` and once a day. The daily build picks up new Ubuntu packages
-and Rust stable. The runner and `uv` images are pinned in the `Dockerfile`, and
-[Dependabot](.github/dependabot.yml) opens a weekly pull request when either has a new release.
+and Rust stable. The runner, `uv`, `bun` and `go` images are pinned in the `Dockerfile`, and
+[Dependabot](.github/dependabot.yml) opens a weekly pull request when one has a new release.
