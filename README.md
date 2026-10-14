@@ -23,5 +23,6 @@ To add an Ubuntu package, add it to the sorted list in the [`Dockerfile`](Docker
 ## Builds
 
 The [workflow](.github/workflows/build.yml) builds the image on every push and pull request,
-and pushes `latest` from `main` and once a day, so the runner, packages, `uv` and Rust follow
-their latest releases.
+and pushes `latest` from `main` and once a day. The daily build picks up new Ubuntu packages
+and Rust stable. The runner and `uv` images are pinned in the `Dockerfile`, and
+[Dependabot](.github/dependabot.yml) opens a weekly pull request when either has a new release.
