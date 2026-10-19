@@ -55,6 +55,11 @@ jobs:
             cargo fmt --version
             cc --version
             shasum --version
+            bsdtar --version
+            node --version
+            zig version
+            helm version
+            sccache --version
           '
 
       - name: Push
