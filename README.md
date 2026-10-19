@@ -11,10 +11,13 @@ ghcr.io/brhelwig-dev/actions-runner:latest
 
 | Tool | Source |
 |---|---|
-| `build-essential`, `gh`, `libgl1`, `libglib2.0-0t64`, `perl`, `sqlite3` | Ubuntu packages |
+| `build-essential`, `gh`, `libarchive-tools` (`bsdtar`), `libgl1`, `libglib2.0-0t64`, `nodejs`, `perl`, `sqlite3`, `xz-utils` | Ubuntu packages |
 | `uv`, `uvx` | [`ghcr.io/astral-sh/uv`](https://github.com/astral-sh/uv) |
 | `bun`, `bunx` | [`oven/bun`](https://hub.docker.com/r/oven/bun) |
 | `go` | [`golang`](https://hub.docker.com/_/golang) |
+| `zig` | [ziglang.org](https://ziglang.org/download/), in `/usr/local/zig` |
+| `helm` | [get.helm.sh](https://helm.sh/docs/intro/install/) |
+| `sccache` | [mozilla/sccache releases](https://github.com/mozilla/sccache/releases) |
 | Rust stable with `clippy` and `rustfmt` | [rustup](https://rustup.rs), in `/usr/local/cargo` and `/usr/local/rustup` |
 
 The upstream image already has the runner, `git`, `curl`, `jq`, the Docker CLI and buildx.
@@ -28,3 +31,5 @@ The [workflow](.github/workflows/build.yml) builds the image on every push and p
 and pushes `latest` from `main` and once a day. The daily build picks up new Ubuntu packages
 and Rust stable. The runner, `uv`, `bun` and `go` images are pinned in the `Dockerfile`, and
 [Dependabot](.github/dependabot.yml) opens a weekly pull request when one has a new release.
+The `zig`, `helm` and `sccache` downloads are pinned by version and checksum in the
+`Dockerfile`; Dependabot does not track them, so update them by hand.
